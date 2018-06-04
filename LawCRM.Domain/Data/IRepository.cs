@@ -1,20 +1,20 @@
-﻿using LawCRM.Domain.Base;
+﻿using Template.Domain.Base;
 using System.Collections.Generic;
 
-namespace LawCRM.Domain.Interfaces.Repositories
+namespace Template.Domain.Interfaces.Data
 {
     public interface IRepository<T> where T : Entity
     {
         void Add(T entity);
 
         void Remove(T entity);
+
+        ICollection<T> All();
         
-        T this[int index]
+        T this[string id]
         {
             get;
             set;
         }
-
-        ICollection<T> Entities { get; set; }
     }
 }

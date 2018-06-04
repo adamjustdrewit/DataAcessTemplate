@@ -2,9 +2,9 @@
 
 namespace Template.Domain.Base
 {
-    public class Entity : INotifyPropertyChanged
+    public class ChildEntity : INotifyPropertyChanged
     {
-        public virtual string Id { get; set; }
+        public virtual string ParentId { get; set; }
 
         public virtual void OnPropertyChanged(string methodName)
         {

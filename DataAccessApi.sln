@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessApi", "DataAccessApi\DataAccessApi.csproj", "{8A25EDA6-A64F-4A21-8F42-535A710E5E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawCRM.DataAccess", "LawCRM.DataAccess\LawCRM.DataAccess.csproj", "{944E29A5-CC1C-40F0-AC49-85413DD4068C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.DataAccess", "LawCRM.DataAccess\Template.DataAccess.csproj", "{944E29A5-CC1C-40F0-AC49-85413DD4068C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawCRM.Domain", "LawCRM.Domain\LawCRM.Domain.csproj", "{552EEBA5-CD36-4C88-977F-0AA2ACD16A25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Domain", "LawCRM.Domain\Template.Domain.csproj", "{552EEBA5-CD36-4C88-977F-0AA2ACD16A25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.DataAccess.Tests", "LawCRM.Tests\Template.DataAccess.Tests.csproj", "{04AF4216-296E-4DC2-A889-503AC19BD77C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{552EEBA5-CD36-4C88-977F-0AA2ACD16A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{552EEBA5-CD36-4C88-977F-0AA2ACD16A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{552EEBA5-CD36-4C88-977F-0AA2ACD16A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AF4216-296E-4DC2-A889-503AC19BD77C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AF4216-296E-4DC2-A889-503AC19BD77C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AF4216-296E-4DC2-A889-503AC19BD77C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AF4216-296E-4DC2-A889-503AC19BD77C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

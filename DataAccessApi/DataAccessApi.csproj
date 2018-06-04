@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LawCRM.DataAccess\LawCRM.DataAccess.csproj" />
+    <ProjectReference Include="..\LawCRM.DataAccess\Template.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

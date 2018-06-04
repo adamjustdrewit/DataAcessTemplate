@@ -1,20 +1,13 @@
-﻿using LawCRM.DataAccess;
-using LawCRM.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DataAccessApi
+﻿namespace DataAccessApi
 {
     class ServiceLayerService
     {
-        private PersistentStorage persistentStorage;
+        //private  persistentStorage;
 
-        public ServiceLayerService()
-        {
-            persistentStorage = new PersistentStorage();
-        }
+        //public ServiceLayerService()
+        //{
+        //    persistentStorage = new MongoFirmPersistentStorage();
+        //}
 
         /// Ok, so imagine this is the service layer, we have some sexy (non-anemic) entities with properties and behaviour and shit
         /// and that's all golden, but we need this seperate shit (that the entity/business layer has no business knowing about) that
@@ -25,39 +18,39 @@ namespace DataAccessApi
         /// look from a client callers perspective.
         
 
-        public Firm[] GetFirms(int customerId)
-        {
-            /// So imagine that some presentation layer wants some clients
-            /// It's rare that you'll ever not segment by a customer Id or something so there's one of them too
-            var repo = persistentStorage.FirmRepo;
+        //public Client[] GetFirms(int customerId)
+        //{
+        //    /// So imagine that some presentation layer wants some clients
+        //    /// It's rare that you'll ever not segment by a customer Id or something so there's one of them too
+        //    var repo = persistentStorage.FirmRepo;
 
-            // wonder if we could do something in the baseservice so whenever you return an IEnumerable from a function with a return of
-            // an array it can just convert it for you to reduce the amount of ToArray() dotted around.
+        //    // wonder if we could do something in the baseservice so whenever you return an IEnumerable from a function with a return of
+        //    // an array it can just convert it for you to reduce the amount of ToArray() dotted around.
 
-            // Also will need some DTO mapping magic here and in future functions
-            return repo.Entities.ToArray();
-        }
+        //    // Also will need some DTO mapping magic here and in future functions
+        //    return repo.Entities.ToArray();
+        //}
 
-        public Firm GetClientById(int firmId)
-        {
-            /// Now that we have 2 calls to the same repo I would refactor this out so clientRepo
-            /// is a private member of the service, meaning that whenever this class is instantiated,
-            /// there will be a sexy clientRepo ready to use, with the caveat that the ctor would need
-            /// the customer parameter passed in
+        //public Client GetClientById(int firmId)
+        //{
+        //    /// Now that we have 2 calls to the same repo I would refactor this out so clientRepo
+        //    /// is a private member of the service, meaning that whenever this class is instantiated,
+        //    /// there will be a sexy clientRepo ready to use, with the caveat that the ctor would need
+        //    /// the customer parameter passed in
 
-            // It would be nice to be able to treat the repos as dictionaries too, seeing as the have motherfucking IDs
-            return persistentStorage.FirmRepo[firmId];
-        }
+        //    // It would be nice to be able to treat the repos as dictionaries too, seeing as the have motherfucking IDs
+        //    return persistentStorage.FirmRepo[firmId];
+        //}
 
-        public void UpdateClient(Firm updatedFirm)
-        {
-            var firm = persistentStorage.FirmRepo[updatedFirm.Id];
-            firm.FirmName = updatedFirm.FirmName;
-            //... other updates to fields
+        //public void UpdateClient(Client updatedFirm)
+        //{
+        //    var firm = persistentStorage.FirmRepo[updatedFirm.Id];
+        //    firm.FirmName = updatedFirm.ClientName;
+        //    //... other updates to fields
 
-            // Once we're happy you should just be able to
-            persistentStorage.Submit();
-        }
+        //    // Once we're happy you should just be able to
+        //    persistentStorage.Submit();
+        //}
 
         /// Ok, looks good so far, but what about nesting
         /// Well, let's try some addresses
@@ -97,10 +90,10 @@ namespace DataAccessApi
         /// 
         /// The persistent storage also allows us to do multiple things under the same submit, to potentially multiple repos (e.g. persistentStorage.Users), it's like a not shit unit of work pattern
         /// plus making the repos strongly typed to the correct repository interface, so we'll know all the additional shit the repos can do without having to cast them... E.g        
-        public Firm[] GetTopTenClients()
-        {
-            return persistentStorage.FirmRepo.GetTopClients(10).ToArray();
-        }
+        //public Client[] GetTopTenClients()
+        //{
+        //    return persistentStorage.FirmRepo.GetTopClients(10).ToArray();
+        //}
 
     }
 }

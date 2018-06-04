@@ -1,14 +1,15 @@
-﻿using LawCRM.Domain.Base;
-using LawCRM.Domain.Interfaces.Repositories;
+﻿using Castle.DynamicProxy;
+using Template.Domain.Base;
+using Template.Domain.Interfaces.Data;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LawCRM.DataAccess.Repositories
+namespace Template.DataAccess.Repositories
 {
     internal abstract class Repository<T> : IRepository<T> where T : Entity
     {
-        internal IDictionary<int, EntityStatus> EntitiesWithStatus;
-        private ICollection<T> _entities;
+        private ICollection<T> _entities;       
+        public IDictionary<string, EntityStatus> EntitiesWithStatus { get; set; }
 
         public ICollection<T> Entities
         {
@@ -23,26 +24,18 @@ namespace LawCRM.DataAccess.Repositories
             }
         }
         
-        public Repository(ICollection<T> entities)
+        public Repository(ICollection<T> entities, IProxyGenerator generator)
         {
-            EntitiesWithStatus = new Dictionary<int, EntityStatus>();
+            EntitiesWithStatus = new Dictionary<string, EntityStatus>();
+
             _entities = entities;
-            foreach(var entity in _entities)
-            {
-                entity.PropertyChanged += Entity_PropertyChanged;
-            }
+            
         }
 
-        private void Entity_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public T this[string id]
         {
-            var changedId = ((T)sender).Id;
-            EntitiesWithStatus[changedId] = EntityStatus.Dirty;
-        }
-
-        public T this[int index]
-        {
-            get => Entities.FirstOrDefault(i => i.Id == index);
-            set => this[index] = value;
+            get => Entities.FirstOrDefault(i => i.Id == id);
+            set => this[id] = value;
         }
 
         public void Add(T entity)
@@ -55,6 +48,11 @@ namespace LawCRM.DataAccess.Repositories
         {
             var removedEntity = EntitiesWithStatus[entity.Id];
             removedEntity = EntityStatus.Scrubbed;
+        }
+
+        public ICollection<T> All()
+        {
+            return _entities;
         }
     }
     
